@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { AuthContextProvider } from './AuthContext/context';
+import {Routes,Route} from 'react-router-dom';
+import SignIn from './components/Signin';
+import SignUp from './components/Signup';
+import Account from './components/Account';
+import ProtectedRoute from './components/ProtectedRoute';
+import PostHelp from './components/Post_help';
+import SearchHelp from './components/Search_help';
 
-function App() {
+const App=()=>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthContextProvider>
+        <Routes>
+          <Route
+             exact path="/"
+             element={<SignIn/>}
+          />
+
+          <Route
+             path="/sign-up"
+             element={<SignUp/>}
+          />
+
+          <Route
+            path="/account"
+          >
+            <Route
+               index 
+               element={
+                  <ProtectedRoute>
+                    <Account/>
+                  </ProtectedRoute>
+               }
+            />
+
+            <Route
+               path="search-help"
+               element={
+                <ProtectedRoute>
+                   <SearchHelp/>
+                </ProtectedRoute>
+               }
+            />
+
+            <Route
+               path="post-help"
+               element={
+                <ProtectedRoute>
+                   <PostHelp/>
+                </ProtectedRoute>
+               }
+            />
+          </Route>
+        </Routes>
+      </AuthContextProvider>
     </div>
-  );
+  )
 }
 
 export default App;
