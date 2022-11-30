@@ -7,15 +7,18 @@ import {
    onAuthStateChanged
 } from 'firebase/auth';
 
-import {collection,doc,updateDoc,deleteDoc,onSnapshot,query} from 'firebase/firestore';
+import {collection,onSnapshot,query} from 'firebase/firestore';
 import { db } from '../firebase';
 import reducer from './reducer';
+import { useNavigate } from 'react-router-dom';
 
 const UserContext=createContext();
 const AuthContextProvider=({children})=>{
    const [user,setUser]=useState({});
    const [databaseData,setDatabaseData]=useState([]);
    const [state,dispatch]=useReducer(reducer,databaseData);
+   const [currentDocToUpdate,setCurrentDocToUpdate]=useState({});
+   const navigate=useNavigate();
 
    //***********AUTH***************/
    const createUser=(email,password)=>{
@@ -61,6 +64,11 @@ const AuthContextProvider=({children})=>{
       dispatch({type:'DELETE_DOC',payload:post});
    }
 
+   const navigateToUpdate=(post)=>{
+      navigate('/account/resend_form');
+      setCurrentDocToUpdate(post);
+   }
+
    const updatePost=(post)=>{
       dispatch({type:'UPDATE_DOC',payload:post});
    }
@@ -75,6 +83,8 @@ const AuthContextProvider=({children})=>{
             databaseData,
             deletePost,
             updatePost,
+            currentDocToUpdate,
+            navigateToUpdate,
          }}
       >
          {children}

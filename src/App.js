@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PostHelp from './components/Post_help';
 import SearchHelp from './components/Search_help';
 import MyPosts from './components/my_posts';
+import ResendForm from './components/ResendForm';
 
 const App=()=>{
   return (
@@ -59,6 +60,15 @@ const App=()=>{
                element={
                 <ProtectedRoute>
                   <MyPosts/>
+                </ProtectedRoute>
+               }
+            />
+
+            <Route
+               path="resend_form"
+               element={
+                <ProtectedRoute>
+                   <ResendForm/>
                 </ProtectedRoute>
                }
             />
