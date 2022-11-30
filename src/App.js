@@ -7,6 +7,7 @@ import Account from './components/Account';
 import ProtectedRoute from './components/ProtectedRoute';
 import PostHelp from './components/Post_help';
 import SearchHelp from './components/Search_help';
+import MyPosts from './components/my_posts';
 
 const App=()=>{
   return (
@@ -49,6 +50,15 @@ const App=()=>{
                element={
                 <ProtectedRoute>
                    <PostHelp/>
+                </ProtectedRoute>
+               }
+            />
+
+            <Route
+               path="my_posts"
+               element={
+                <ProtectedRoute>
+                  <MyPosts/>
                 </ProtectedRoute>
                }
             />

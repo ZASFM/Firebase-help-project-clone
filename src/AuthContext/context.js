@@ -1,4 +1,4 @@
-import React,{useState,useEffect,createContext,useContext} from 'react';
+import React,{useState,useEffect,createContext,useContext,useReducer} from 'react';
 import { auth } from '../firebase';
 import {
    signInWithEmailAndPassword,
@@ -9,11 +9,13 @@ import {
 
 import {collection,doc,updateDoc,deleteDoc,onSnapshot,query} from 'firebase/firestore';
 import { db } from '../firebase';
+import reducer from './reducer';
 
 const UserContext=createContext();
 const AuthContextProvider=({children})=>{
    const [user,setUser]=useState({});
    const [databaseData,setDatabaseData]=useState([]);
+   const [state,dispatch]=useReducer(reducer,databaseData);
 
    //***********AUTH***************/
    const createUser=(email,password)=>{
@@ -54,6 +56,15 @@ const AuthContextProvider=({children})=>{
       return()=>unsubscribe();
    },[])
 
+   /************REDUCER**************/
+   const deletePost=async(post)=>{
+      dispatch({type:'DELETE_DOC',payload:post});
+   }
+
+   const updatePost=(post)=>{
+      dispatch({type:'UPDATE_DOC',payload:post});
+   }
+
    return (
       <UserContext.Provider
          value={{
@@ -62,6 +73,8 @@ const AuthContextProvider=({children})=>{
             signIn,
             logOut,
             databaseData,
+            deletePost,
+            updatePost,
          }}
       >
          {children}

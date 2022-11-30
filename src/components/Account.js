@@ -30,6 +30,7 @@ const Account=()=>{
          <div>
             <Link to="/account/post-help">Post help</Link>
             <Link to="/account/search-help">Search help</Link>
+            <Link to="/account/my_posts">My posts</Link>
          </div>
       </div>
    )
