@@ -32,7 +32,7 @@ const PostHelp=()=>{
             ...formData,
             userId:user.uid,
          })
-         navigate('/account');
+         navigate('/successSent');
       }
       catch(error){
          console.log(error.message);
@@ -101,7 +101,7 @@ const PostHelp=()=>{
                   id="accompany"
                   name="category"
                   type="radio"
-                  checked={formData.category==='category'}
+                  checked={formData.category==='accompany'}
                   value="accompany"
                   onChange={handleChange}
                />

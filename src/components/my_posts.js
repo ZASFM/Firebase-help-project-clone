@@ -19,7 +19,7 @@ const MyPosts=()=>{
          {localPosts.map(post=>(
             <div className='border m-2 border-solid border-2'>
                {post.name}
-               <button onClick={navigateToUpdate}> <FaEdit/> </button>
+               <button onClick={()=>navigateToUpdate(post)}> <FaEdit/> </button>
                <button onClick={()=>deletePost(post)}> <FaRegTrashAlt/> </button>
             </div>
          ))}

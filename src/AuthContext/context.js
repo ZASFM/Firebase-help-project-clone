@@ -73,6 +73,7 @@ const AuthContextProvider=({children})=>{
       dispatch({type:'UPDATE_DOC',payload:post});
    }
 
+
    return (
       <UserContext.Provider
          value={{
@@ -84,6 +85,7 @@ const AuthContextProvider=({children})=>{
             deletePost,
             updatePost,
             currentDocToUpdate,
+            setCurrentDocToUpdate,
             navigateToUpdate,
          }}
       >

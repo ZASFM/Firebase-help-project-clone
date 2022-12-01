@@ -9,12 +9,30 @@ import PostHelp from './components/Post_help';
 import SearchHelp from './components/Search_help';
 import MyPosts from './components/my_posts';
 import ResendForm from './components/ResendForm';
+import SuccessSent from './components/redirects/SuccessSent';
+import SuccessUpdate from './components/redirects/SuccssEdit';
 
 const App=()=>{
   return (
     <div>
       <AuthContextProvider>
         <Routes>
+        <Route
+             path="/successSent"
+             element={
+               <ProtectedRoute>
+                  <SuccessSent/>
+               </ProtectedRoute>}
+          />
+          
+          <Route
+             path="/successUpdate"
+             element={
+               <ProtectedRoute>
+                  <SuccessUpdate/>
+               </ProtectedRoute>
+             }
+          />
           <Route
              exact path="/"
              element={<SignIn/>}
