@@ -54,9 +54,10 @@ const PostHelp=()=>{
    }
 
    return (
-      <div>
+      <div className="w-full">
          <form onSubmit={sendData}>
-            <label htmlFor="name">Your name:</label><br/>
+            <div className="form-group mb-6">
+            <label htmlFor="name" className="inline-block text-gray-700">Your name:</label><br/>
             <input
                id="name"
                type="text"
@@ -64,8 +65,9 @@ const PostHelp=()=>{
                placeholder="Your name"
                value={formData.name}
                onChange={handleChange}
-            />
-            <label htmlFor="email">Your email:</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
+            <label className="inline-block text-gray-700" htmlFor="email">Your email:</label><br/>
             <input
                id="email"
                type="text"
@@ -73,21 +75,23 @@ const PostHelp=()=>{
                placeholder="Your email"
                value={formData.email}
                onChange={handleChange}
-            />
-            <label htmlFor="location">Your location:</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
+            <label className="inline-block text-gray-700" htmlFor="location">Your location:</label><br/>
             <select
                id="location"
                name="location"
                value={formData.location}
                onChange={handleChange}
+               className="border-0 cursor-pointer rounded-full drop-shadow-md bg-gray-200 w-72 duration-300"
             >
                <option value="">--choose--</option>
                <option value="paris">Paris</option>
                <option value="london">London</option>
                <option value="madrid">Madrid</option>
                <option value="rome">Rome</option>
-            </select>
-            <label>Your category:</label>
+            </select><br/><br/>
+            <label className="inline-block text-gray-700">Your category:</label><br/>
                <input
                   id="transport"
                   name="category"
@@ -95,8 +99,9 @@ const PostHelp=()=>{
                   checked={formData.category==='transport'}
                   value="transport"
                   onChange={handleChange}
+                  class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                />
-               <label htmlFor="transport">Transport</label>
+               <label htmlFor="transport">Transport</label><br/>
                <input
                   id="accompany"
                   name="category"
@@ -104,8 +109,9 @@ const PostHelp=()=>{
                   checked={formData.category==='accompany'}
                   value="accompany"
                   onChange={handleChange}
+                  class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                />
-               <label htmlFor="accompany">Accompany</label>
+               <label htmlFor="accompany">Accompany</label><br/>
                <input
                   id="delivery"
                   name="category"
@@ -113,16 +119,17 @@ const PostHelp=()=>{
                   checked={formData.category==='delivery'}
                   value="delivery"
                   onChange={handleChange}
+                  class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                />
-               <label htmlFor="delivery">Delivery</label>
-            <label htmlFor="message">Your message:</label>
+               <label htmlFor="delivery">Delivery</label><br/>
+            <br/><label className="inline-block text-gray-700" htmlFor="message">Your message:</label><br/>
             <textarea
                id="message"
                name="message"
                value={formData.message}
                onChange={handleChange}
-            />
-            <label htmlFor="terms">Accept terms?</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
             <input
                   id="terms"
                   name="acceptTerms"
@@ -130,10 +137,13 @@ const PostHelp=()=>{
                   checked={formData.acceptTerms}
                   onChange={handleChange}
                />
-            <input
+               <label htmlFor="terms">Accept terms?</label>
+            <br/><input
                type="submit"
                value="Submit form"
+               className="cursor-pointer px-4 py-1 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-pink-500 hover:bg-pink-600 hover:shadow-lg focus:outline-none"
             />
+            </div>
          </form>
       </div>
    )
