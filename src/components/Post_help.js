@@ -54,7 +54,9 @@ const PostHelp=()=>{
    }
 
    return (
-      <div className="w-full">
+      <div>
+         <h1 className="text-2xl mb-8 mt-8 ml-8">Please fill out the form with your data:</h1>
+         <div className="flex justify-center">
          <form onSubmit={sendData}>
             <div className="form-group mb-6">
             <label htmlFor="name" className="inline-block text-gray-700">Your name:</label><br/>
@@ -145,6 +147,7 @@ const PostHelp=()=>{
             />
             </div>
          </form>
+         </div>
       </div>
    )
 }
