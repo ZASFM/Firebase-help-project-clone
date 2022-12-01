@@ -28,9 +28,18 @@ const Account=()=>{
          <p>Account: {user.email}</p>
          <button onClick={logOutFromSession}>Log out</button>
          <div>
-            <Link to="/account/post-help">Post help</Link>
-            <Link to="/account/search-help">Search help</Link>
-            <Link to="/account/my_posts">My posts</Link>
+            <div>
+               <Link to="/account/post-help">Post Help</Link>
+            </div>
+            <div>
+               <Link to="/account/search-help">Search Help</Link>
+            </div>
+            <div>
+               <Link to="/account/my_posts">My Posts</Link>
+            </div>
+            <div>
+               <Link to="/account/applied">Applied Jobs</Link>
+            </div>
          </div>
       </div>
    )

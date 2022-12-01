@@ -11,6 +11,7 @@ import MyPosts from './components/my_posts';
 import ResendForm from './components/ResendForm';
 import SuccessSent from './components/redirects/SuccessSent';
 import SuccessUpdate from './components/redirects/SuccssEdit';
+import Applied from './components/Applied';
 
 const App=()=>{
   return (
@@ -24,7 +25,7 @@ const App=()=>{
                   <SuccessSent/>
                </ProtectedRoute>}
           />
-          
+
           <Route
              path="/successUpdate"
              element={
@@ -88,6 +89,15 @@ const App=()=>{
                 <ProtectedRoute>
                    <ResendForm/>
                 </ProtectedRoute>
+               }
+            />
+
+            <Route
+               path="applied"
+               element={
+                  <ProtectedRoute>
+                     <Applied/>
+                  </ProtectedRoute>
                }
             />
           </Route>
