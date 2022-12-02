@@ -41,9 +41,12 @@ const ResendForm=()=>{
    }
 
    return(
-      <div>
+      <div className="m-4">
+         <h1 className="text-3xl mb-6">Please change those field you desire to commit:</h1>
+         <div className="flex flex-row justify-center gap-[250px] mt-[80px]">
+         <p className="text-red mr-8 my-auto">Warning: this action is irreversible, beware of of the fields</p>
          <form onSubmit={resendData}>
-         <label htmlFor="name">Your name:</label><br/>
+         <label htmlFor="name" className="inline-block text-gray-700">Your name:</label><br/>
             <input
                id="name"
                type="text"
@@ -51,8 +54,9 @@ const ResendForm=()=>{
                placeholder="Your name"
                value={currentDocToUpdate.name}
                onChange={handleChange}
-            />
-            <label htmlFor="email">Your email:</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
+            <label htmlFor="email" className="inline-block text-gray-700">Your email:</label><br/>
             <input
                id="email"
                type="text"
@@ -60,21 +64,23 @@ const ResendForm=()=>{
                placeholder="Your email"
                value={currentDocToUpdate.email}
                onChange={handleChange}
-            />
-            <label htmlFor="location">Your location:</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
+            <label htmlFor="location" className="inline-block text-gray-700">Your location:</label><br/>
             <select
                id="location"
                name="location"
                value={currentDocToUpdate.location}
                onChange={handleChange}
+               className="border-0 cursor-pointer rounded-full drop-shadow-md bg-gray-200 w-72 duration-300"
             >
                <option value="">--choose--</option>
                <option value="paris">Paris</option>
                <option value="london">London</option>
                <option value="madrid">Madrid</option>
                <option value="rome">Rome</option>
-            </select>
-            <label>Your category:</label>
+            </select><br/><br/>
+            <label className="inline-block text-gray-700">Your category:</label><br/>
                <input
                   id="transport"
                   name="category"
@@ -83,7 +89,7 @@ const ResendForm=()=>{
                   value="transport"
                   onChange={handleChange}
                />
-               <label htmlFor="transport">Transport</label>
+               <label htmlFor="transport">Transport</label><br/>
                <input
                   id="accompany"
                   name="category"
@@ -92,7 +98,7 @@ const ResendForm=()=>{
                   value="accompany"
                   onChange={handleChange}
                />
-               <label htmlFor="accompany">Accompany</label>
+               <label htmlFor="accompany">Accompany</label><br/>
                <input
                   id="delivery"
                   name="category"
@@ -101,27 +107,30 @@ const ResendForm=()=>{
                   value="delivery"
                   onChange={handleChange}
                />
-               <label htmlFor="delivery">Delivery</label>
-            <label htmlFor="message">Your message:</label>
+               <label htmlFor="delivery">Delivery</label><br/><br/>
+            <label htmlFor="message" className="inline-block text-gray-700">Your message:</label><br/>
             <textarea
                id="message"
                name="message"
                value={currentDocToUpdate.message}
                onChange={handleChange}
-            />
-            <label htmlFor="terms">Accept terms?</label>
+               className="px-4 py-1 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
+            /><br/><br/>
             <input
                   id="terms"
                   name="acceptTerms"
                   type="checkbox"
                   checked={currentDocToUpdate.acceptTerms}
                   onChange={handleChange}
-               />
+            />
+            <label htmlFor="terms">Accept terms?</label><label htmlFor="terms">Accept terms?</label><br/>
             <input
                type="submit"
                value="Submit form"
+               className="cursor-pointer px-4 py-1 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-pink-500 hover:bg-pink-600 hover:shadow-lg focus:outline-none"
             />
          </form>
+         </div>
       </div>
    )
 }
