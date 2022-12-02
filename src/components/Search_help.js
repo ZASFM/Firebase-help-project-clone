@@ -94,6 +94,7 @@ const SearchHelp=()=>{
                   <div className="w-full flex justify-center items-center">
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.location}</div>
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.category}</div>
+                     <button className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4 hover:bg-red-800">Apply for this job</button>
                   </div><br/>
                   <div className="pl-4">{`From: ${data.name}`}</div>
                   <div className="pl-4 mb-2">{`Message: ${data.message}`}</div>
