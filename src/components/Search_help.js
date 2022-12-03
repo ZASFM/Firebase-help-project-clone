@@ -1,14 +1,17 @@
 import React,{useRef,useEffect,useState} from "react";
 import { UserAuth } from "../AuthContext/context";
+import { auth } from "../firebase";
+import {FaCheck} from 'react-icons/fa'; 
 
 const SearchHelp=()=>{
-   const {databaseData}=UserAuth();
+   const {databaseData,setDatabaseData}=UserAuth();
    const [localData,setLocalData]=useState([]);
    const [selectData,setSelectData]=useState({
       location:'',
       category:'',
    })
-   console.log(selectData);
+   const [showMessage,setShowMessage]=useState(false);
+   console.log(localData);
    const input=useRef();
 
    useEffect(()=>{
@@ -47,12 +50,30 @@ const SearchHelp=()=>{
       })
    }
 
+   const applyForAJob=(id)=>{
+      const newArr=databaseData.map(data=>{
+         if(data.id===id){
+            return {
+               ...data,
+               appliedBy:auth.currentUser.uid,
+            }
+         }
+         return data;
+      })
+      setDatabaseData(newArr);
+      setShowMessage(true);
+      setTimeout(()=>{
+         setShowMessage(false);
+      },2500)
+   }
+
    useEffect(()=>{
       updateLocalWithSelect();
    },[selectData])
 
    return (
       <div className="m-4">
+         {showMessage && <div className="bg-green-700 text-white-500 flex gap-[20px] justify-center items-center"><FaCheck/> You have successfully applied for a job</div>}
          <h1 className="text-2xl">All posts are show here:</h1>
          <div>
             <p className="text-1.25xl mt-4">Search your prefered jobs here:</p>
@@ -94,7 +115,7 @@ const SearchHelp=()=>{
                   <div className="w-full flex justify-center items-center">
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.location}</div>
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.category}</div>
-                     <button className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4 hover:bg-red-800">Apply for this job</button>
+                     <button onClick={()=>applyForAJob(data.id)} className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4 hover:bg-red-800">Apply for this job</button>
                   </div><br/>
                   <div className="pl-4">{`From: ${data.name}`}</div>
                   <div className="pl-4 mb-2">{`Message: ${data.message}`}</div>

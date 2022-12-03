@@ -52,6 +52,7 @@ const AuthContextProvider=({children})=>{
             dataArr.push({
                ...doc.data(),
                id:doc.id,
+               appliedBy:'',
             })
          })
          setDatabaseData(dataArr);
@@ -82,6 +83,7 @@ const AuthContextProvider=({children})=>{
             signIn,
             logOut,
             databaseData,
+            setDatabaseData,
             deletePost,
             updatePost,
             currentDocToUpdate,
