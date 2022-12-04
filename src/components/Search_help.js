@@ -2,6 +2,8 @@ import React,{useRef,useEffect,useState} from "react";
 import { UserAuth } from "../AuthContext/context";
 import { auth } from "../firebase";
 import {FaCheck} from 'react-icons/fa'; 
+import {doc,updateDoc} from 'firebase/firestore';
+import { db } from "../firebase";
 
 const SearchHelp=()=>{
    const {databaseData,setDatabaseData}=UserAuth();
@@ -50,18 +52,20 @@ const SearchHelp=()=>{
       })
    }
 
-   const applyForAJob=(id)=>{
-      const newArr=databaseData.map(data=>{
-         if(data.id===id){
-            return {
-               ...data,
-               appliedBy:auth.currentUser.uid,
-            }
-         }
-         return data;
-      })
-      setDatabaseData(newArr);
-      setShowMessage(true);
+   const applyForAJob=async(post)=>{
+      try{
+         await updateDoc(doc(db,'appUsers',post.id),{
+            ...post,
+            appliedBy:`${auth.currentUser.uid}`,
+         })
+         setShowMessage(true);
+      }
+      catch(error){
+         console.log(error.message);
+      }
+      finally{
+         console.log('Process update doc will appliedBy has ended');
+      }
       setTimeout(()=>{
          setShowMessage(false);
       },2500)
@@ -107,6 +111,10 @@ const SearchHelp=()=>{
                <option value="accompany">Accompany</option>
                <option value="delivery">Delivery</option>
             </select>
+            <button className="m-4 cursor-pointer bg-blue-200 text-white border-2 border-black rounded-lg p-2 hover:bg-blue-500" onClick={()=>setSelectData({
+               location:'',
+               category:'',
+            })}>Reset search field</button>
          </div>
          {localData.length<1 && <div>No results matches your search, try with another query</div>}
          {localData!==[] && localData.map(data=>{
@@ -115,7 +123,7 @@ const SearchHelp=()=>{
                   <div className="w-full flex justify-center items-center">
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.location}</div>
                      <div className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4">{data.category}</div>
-                     <button onClick={()=>applyForAJob(data.id)} className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4 hover:bg-red-800">Apply for this job</button>
+                     <button onClick={()=>applyForAJob(data)} className="bg-black-300 border-2 border-solid rounded w-1/5 flex justify-center items-center m-4 hover:bg-red-800">Apply for this job</button>
                   </div><br/>
                   <div className="pl-4">{`From: ${data.name}`}</div>
                   <div className="pl-4 mb-2">{`Message: ${data.message}`}</div>

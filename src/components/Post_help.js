@@ -31,6 +31,7 @@ const PostHelp=()=>{
          await addDoc(collection(db,'appUsers'),{
             ...formData,
             userId:user.uid,
+            appliedBy:'',
          })
          navigate('/successSent');
       }

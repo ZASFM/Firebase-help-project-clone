@@ -17,6 +17,7 @@ const Applied=()=>{
    return (
       <div className="m-4">
          <h1 className="text-2xl">You have applied for all these jobs, please contact the the person to there emails</h1>
+         {appliedFor.length<1 && <h3>There are no applied jobs, please apply for one</h3>}
          {appliedFor && appliedFor.map(data=>{
             return (
                <div className="border border-solid border-2 border-black bg-blue-300 m-4">
